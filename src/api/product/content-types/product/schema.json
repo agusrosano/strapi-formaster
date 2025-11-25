@@ -25,7 +25,7 @@
     },
     "main_image": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",
@@ -48,6 +48,14 @@
     },
     "order_index": {
       "type": "integer"
+    },
+    "category_id": {
+      "type": "enumeration",
+      "enum": [
+        "desayuno",
+        "cocina",
+        "limpieza"
+      ]
     }
   }
 }

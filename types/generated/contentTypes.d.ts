@@ -468,7 +468,7 @@ export interface ApiFeaturedSectionFeaturedSection
 export interface ApiHeroContentHeroContent extends Struct.CollectionTypeSchema {
   collectionName: 'hero_contents';
   info: {
-    displayName: 'Hero Content';
+    displayName: 'Home';
     pluralName: 'hero-contents';
     singularName: 'hero-content';
   };
@@ -507,6 +507,9 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    category_id: Schema.Attribute.Enumeration<
+      ['desayuno', 'cocina', 'limpieza']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -524,13 +527,45 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     main_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
+      'images' | 'files' | 'videos' | 'audios'
     >;
     name: Schema.Attribute.String;
     order_index: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     short_description: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiServiceTecServiceTec extends Struct.CollectionTypeSchema {
+  collectionName: 'services_tec';
+  info: {
+    displayName: 'Service';
+    pluralName: 'services-tec';
+    singularName: 'service-tec';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image_url: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service-tec.service-tec'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.Text;
+    titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1050,6 +1085,7 @@ declare module '@strapi/strapi' {
       'api::featured-section.featured-section': ApiFeaturedSectionFeaturedSection;
       'api::hero-content.hero-content': ApiHeroContentHeroContent;
       'api::product.product': ApiProductProduct;
+      'api::service-tec.service-tec': ApiServiceTecServiceTec;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

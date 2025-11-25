@@ -1,33 +1,31 @@
 {
   "kind": "collectionType",
-  "collectionName": "hero_contents",
+  "collectionName": "services_tec",
   "info": {
-    "singularName": "hero-content",
-    "pluralName": "hero-contents",
-    "displayName": "Home"
+    "singularName": "service-tec",
+    "pluralName": "services-tec",
+    "displayName": "Service"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "titulo": {
       "type": "string"
     },
-    "subtitle": {
-      "type": "string"
+    "subtitulo": {
+      "type": "text"
     },
     "image_url": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images",
         "files",
-        "videos"
+        "videos",
+        "audios"
       ]
-    },
-    "is_active": {
-      "type": "boolean"
     }
   }
 }
