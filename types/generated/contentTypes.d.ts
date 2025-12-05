@@ -539,6 +539,74 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProductoBannerProductoBanner
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'producto_banners';
+  info: {
+    displayName: 'ProductoBanner';
+    pluralName: 'producto-banners';
+    singularName: 'producto-banner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image_url: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::producto-banner.producto-banner'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiServiceBannerServiceBanner
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'service_banners';
+  info: {
+    displayName: 'ServiceBanner';
+    pluralName: 'service-banners';
+    singularName: 'service-banner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image_url: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service-banner.service-banner'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiServiceTecServiceTec extends Struct.CollectionTypeSchema {
   collectionName: 'services_tec';
   info: {
@@ -1085,6 +1153,8 @@ declare module '@strapi/strapi' {
       'api::featured-section.featured-section': ApiFeaturedSectionFeaturedSection;
       'api::hero-content.hero-content': ApiHeroContentHeroContent;
       'api::product.product': ApiProductProduct;
+      'api::producto-banner.producto-banner': ApiProductoBannerProductoBanner;
+      'api::service-banner.service-banner': ApiServiceBannerServiceBanner;
       'api::service-tec.service-tec': ApiServiceTecServiceTec;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
